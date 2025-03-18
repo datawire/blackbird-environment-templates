@@ -1,0 +1,26 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sPSPCapabilities
+metadata:
+  name: psp-disallow-add-capabilities
+  namespace: gatekeeper-system
+  annotations:
+    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+spec:
+  enforcementAction: deny
+  match:
+    scope: Namespaced
+    namespaces:
+      - blackbird-services
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod"]
+    labelSelector:
+      matchExpressions:
+        - key: blackbird.getambassador.io/instance-type
+          operator: In
+          values:
+            - deployment
+  parameters:
+    allowedCapabilities: []
+    requiredDropCapabilities:
+      - "ALL"

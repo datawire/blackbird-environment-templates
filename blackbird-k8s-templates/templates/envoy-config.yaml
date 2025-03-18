@@ -1,0 +1,21 @@
+apiVersion: config.gateway.envoyproxy.io/v1alpha1
+kind: EnvoyProxy
+metadata:
+  labels:
+    app.kubernetes.io/instance: eg-edge-stack-eg
+    app.kubernetes.io/name: eg-edge-stack-eg
+    app.kubernetes.io/version: v0.5.0
+  name: edge-stack-proxy
+  namespace: ambassador
+spec:
+  logging:
+    level:
+      default: info
+  provider:
+    kubernetes:
+      envoyDeployment:
+        container:
+          image: ambassador/aes-envoy:v4.0.0-preview.1
+      envoyService:
+        type: "ClusterIP" # We don't want Gateways to create a LoadBalancer service since we take care of that ourselves
+    type: Kubernetes

@@ -1,0 +1,31 @@
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: GatewayClass
+metadata:
+  labels:
+    app.kubernetes.io/instance: eg-edge-stack
+  name: aes-gateway
+  namespace: {{ .Values.AmbassadorNamespace }}
+spec:
+  controllerName: gateway.envoyproxy.io/gatewayclass-controller
+  parametersRef:
+    group: config.gateway.envoyproxy.io
+    kind: EnvoyProxy
+    name: edge-stack-proxy
+    namespace: {{ .Values.AmbassadorNamespace }}
+---
+apiVersion: gateway.networking.k8s.io/v1beta1
+kind: Gateway
+metadata:
+  labels:
+    app.kubernetes.io/instance: eg-edge-stack
+  name: aes-gateway
+  namespace: {{ .Values.AmbassadorNamespace }}
+spec:
+  gatewayClassName: aes-gateway
+  listeners:
+  - name: wild-http
+    port: 80
+    protocol: HTTP
+    allowedRoutes:
+      namespaces:
+        from: All
