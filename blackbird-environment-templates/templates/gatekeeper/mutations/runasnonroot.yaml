@@ -1,0 +1,49 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: runasnonroot-deployment
+  namespace: gatekeeper-system
+spec:
+  match:
+    scope: Namespaced
+    namespaces:
+      - blackbird-services
+    labelSelector:
+      matchExpressions:
+        - key: blackbird.getambassador.io/instance-type
+          operator: In
+          values:
+            - deployment
+  applyTo:
+    - groups: ["apps"]
+      kinds: ["Deployment"]
+      versions: ["v1"]
+  location: "spec.template.spec.securityContext.runAsNonRoot"
+  parameters:
+    assign:
+      value: true
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: runasnonroot-pod
+  namespace: gatekeeper-system
+spec:
+  match:
+    scope: Namespaced
+    namespaces:
+      - blackbird-services
+    labelSelector:
+      matchExpressions:
+        - key: blackbird.getambassador.io/instance-type
+          operator: In
+          values:
+            - deployment
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  location: "spec.securityContext.runAsNonRoot"
+  parameters:
+    assign:
+      value: true

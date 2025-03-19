@@ -1,0 +1,9 @@
+# Configurations for Ambassador
+AES4Version: "v4.0.0-preview.2.dev.1"
+AmbassadorNamespace: "ambassador"
+ServicesNamespace: "blackbird-services"
+TelepresenceVersion: "2.20.1-test.0"
+
+# Blackbird-specific Labels and Settings
+Labels:
+  app.kubernetes.io/managed-by: blackbird

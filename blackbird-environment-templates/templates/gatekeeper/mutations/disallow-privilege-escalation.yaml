@@ -1,0 +1,100 @@
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: defaultallowprivilegeescalation-deployment
+  namespace: gatekeeper-system
+spec:
+  match:
+    scope: Namespaced
+    namespaces:
+      - blackbird-services
+    labelSelector:
+      matchExpressions:
+        - key: blackbird.getambassador.io/instance-type
+          operator: In
+          values:
+            - deployment
+  applyTo:
+    - groups: ["apps"]
+      kinds: ["Deployment"]
+      versions: ["v1"]
+  location: "spec.template.spec.containers[name:*].securityContext.allowPrivilegeEscalation"
+  parameters:
+    assign:
+      value: false
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: defaultallowprivilegeescalation
+  namespace: gatekeeper-system
+spec:
+  match:
+    scope: Namespaced
+    namespaces:
+      - blackbird-services
+    labelSelector:
+      matchExpressions:
+        - key: blackbird.getambassador.io/instance-type
+          operator: In
+          values:
+            - deployment
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  location: "spec.containers[name:*].securityContext.allowPrivilegeEscalation"
+  parameters:
+    assign:
+      value: false
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: defaultallowprivilegeescalation-init
+  namespace: gatekeeper-system
+spec:
+  match:
+    scope: Namespaced
+    namespaces:
+      - blackbird-services
+    labelSelector:
+      matchExpressions:
+        - key: blackbird.getambassador.io/instance-type
+          operator: In
+          values:
+            - deployment
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  location: "spec.initContainers[name:*].securityContext.allowPrivilegeEscalation"
+  parameters:
+    assign:
+      value: false
+
+---
+apiVersion: mutations.gatekeeper.sh/v1
+kind: Assign
+metadata:
+  name: defaultallowprivilegeescalation-ephemeral
+  namespace: gatekeeper-system
+spec:
+  match:
+    scope: Namespaced
+    namespaces:
+      - blackbird-services
+    labelSelector:
+      matchExpressions:
+        - key: blackbird.getambassador.io/instance-type
+          operator: In
+          values:
+            - deployment
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  location: "spec.ephemeralContainers[name:*].securityContext.allowPrivilegeEscalation"
+  parameters:
+    assign:
+      value: false
