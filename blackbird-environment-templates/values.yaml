@@ -7,3 +7,6 @@ TelepresenceVersion: "2.20.1-test.0"
 # Blackbird-specific Labels and Settings
 Labels:
   app.kubernetes.io/managed-by: blackbird
+
+# Cluster-wide security policies
+enableClusterPolicies: true
