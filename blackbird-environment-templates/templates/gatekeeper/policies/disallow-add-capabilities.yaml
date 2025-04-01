@@ -1,3 +1,4 @@
+{{- if .Values.enableClusterPolicies }}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPCapabilities
 metadata:
@@ -24,3 +25,4 @@ spec:
     allowedCapabilities: []
     requiredDropCapabilities:
       - "ALL"
+{{- end }}
