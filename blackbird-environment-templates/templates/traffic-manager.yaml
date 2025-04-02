@@ -10,8 +10,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 ---
 # Source: telepresence/templates/agentInjectorWebhook.yaml
 apiVersion: v1
@@ -24,8 +25,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 data:
   ca.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURJekNDQWd1Z0F3SUJBZ0lRUnRSS3cwUHdOWWViM3diRVBWUEpTakFOQmdrcWhraUc5dzBCQVFzRkFEQWMKTVJvd0dBWURWUVFERXhGaFoyVnVkQzFwYm1wbFkzUnZjaTFqWVRBZUZ3MHlOREV4TVRVeE9UQTRNemxhRncweQpOVEV4TVRVeE9UQTRNemxhTUJ3eEdqQVlCZ05WQkFNVEVXRm5aVzUwTFdsdWFtVmpkRzl5TFdOaE1JSUJJakFOCkJna3Foa2lHOXcwQkFRRUZBQU9DQVE4QU1JSUJDZ0tDQVFFQTBQb0VNQ2cyVUFYYU1TckpBS1pUOWduNGV1VkgKSDBhWXAzTmdoMjNDY2tFUVI3aVNOTk43YVM5cXk1dXM4L1p4Q0IraTlscGJFQkdZT0JhbFQ5ajBNbzVWZlQ5NQphUnA1WHF3ZTA5TExQaEN4RGtiNkdnV2hQVlZGcUNVaTJEV0FKWUVaL2NyMkNrWitMOXJ0eDBMaTNzMGpPRjRnCnZ2NU85WERmeTJtU2hLb0ljREwyZXVtM0Q1cUhSNjl3TEhNbkVRM2V3d1pvU1BHSWxRZXNHbndwenF5UnR0L3EKZ3Q2MUdISTdkTTlaVGNyNHd5TC8vdm8vd1h3ODU4OG5CWnRFMDVUeVp3cXZrcTBHb0dIR1QrcC9nbkhWaGZwYgp3OVVGLzdHYzBaUlJ1aE1mcTU5cUphZlBFN2p6S3pUdkZ5VUVCdkttZEdQSkoySWIraXFmaEJ3L3d3SURBUUFCCm8yRXdYekFPQmdOVkhROEJBZjhFQkFNQ0FxUXdIUVlEVlIwbEJCWXdGQVlJS3dZQkJRVUhBd0VHQ0NzR0FRVUYKQndNQ01BOEdBMVVkRXdFQi93UUZNQU1CQWY4d0hRWURWUjBPQkJZRUZLbUpZcitRS3JkRUVrVU1Cb3NpOGh1egp6K2FMTUEwR0NTcUdTSWIzRFFFQkN3VUFBNElCQVFDWmdhTnNDVWoyMTRxaDRsR0hxUGxJK3d2TXAzMS9IUDIrCkJVTnZyTHE2U3RKek80QzhiRFFwWVFGN3BIVG04QitJUm9nVXgvRHN0YWREVkJXRHJHRnVoVU9KRmN0dmpHRngKam0xTHVQVVl0YVFiU1Z0ZktxZEpLY0dFMlovck82UEFkY3JOSzFScnExdGRVcjBqa0c0eXVjYVhpcklIUmxxTQpTS1FuMWF5MDR3ZlpqcGlYNVlWN0RQMEFFaHFjd3FlZGFjY2JlOVFoK0ltVlZWdmNUYktNQlUvUUNRbzJTdHJrCmpFSVBoRnVCejBjNE1UUGIzR0pxeVhoK28wOUJ5THJSUnNoalJLVU5kdXFnT0xlMmgvcDVKS04yd09WUThNQ24KeFNsVG9PdDQ5Sk5YS0ZNQ2lCL3QvTm1OM0VwbC82cHpDcVBlbTNGNU9FaEx1UEJJR1piRgotLS0tLUVORCBDRVJUSUZJQ0FURS0tLS0tCg==
   tls.crt: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURaakNDQWs2Z0F3SUJBZ0lRZDRVSnFzbDFwRWxwUDN2SHhFaXFEakFOQmdrcWhraUc5dzBCQVFzRkFEQWMKTVJvd0dBWURWUVFERXhGaFoyVnVkQzFwYm1wbFkzUnZjaTFqWVRBZUZ3MHlOREV4TVRVeE9UQTRNemxhRncweQpOVEV4TVRVeE9UQTRNemxhTUJreEZ6QVZCZ05WQkFNVERtRm5aVzUwTFdsdWFtVmpkRzl5TUlJQklqQU5CZ2txCmhraUc5dzBCQVFFRkFBT0NBUThBTUlJQkNnS0NBUUVBM1ZqRHVkbVNjNnpyaUFYNGRmMjV6UnhPTGN1eFFTdTcKdjJRTnlwc01ta2xtaWNlSmZjdUZJZ3h0NE5sWk9qbDFMbENMUitQanR1YVVENEZSLzNhN0RCNXpka0NmOEYrdApsaGlXR2RGT29HVldlSTJxL3NHUnBFSCtpUUdNdk1ydGUrVTh0akprSDRjSEQzTTcveW5jSm1RVTlqOFlWYVFoCnl4cHVobTcrclRObDJxZ3JoQk5ldHZPMjBOKzZLMTIwcFhZSGlNVVVabldLMHpSQzRISm55VFBXN2V1YzJuUDYKZm5iTlpvcXB6NjRwK2Zuc3FUVU9CdUk2U2kwQUpNbXp6dXVtS3kweEZXMkxRNVQzdXg0NUZSU3ozU0grQUFUOAp4NngzOCttVURFYWxLT3ZMYm9aY3VWU0tFTit6aGNkamhVMEJnY1NLR082YnlkeVJRTXIrcXdJREFRQUJvNEdtCk1JR2pNQTRHQTFVZER3RUIvd1FFQXdJRm9EQWRCZ05WSFNVRUZqQVVCZ2dyQmdFRkJRY0RBUVlJS3dZQkJRVUgKQXdJd0RBWURWUjBUQVFIL0JBSXdBREFmQmdOVkhTTUVHREFXZ0JTcGlXSy9rQ3EzUkJKRkRBYUxJdkliczgvbQppekJEQmdOVkhSRUVQREE2Z2hsaFoyVnVkQzFwYm1wbFkzUnZjaTVoYldKaGMzTmhaRzl5Z2gxaFoyVnVkQzFwCmJtcGxZM1J2Y2k1aGJXSmhjM05oWkc5eUxuTjJZekFOQmdrcWhraUc5dzBCQVFzRkFBT0NBUUVBT2lucUE3SEoKbjJ5RjFrTFhIL1BhdUZOVmZTMW4rWE9SOG9yd2phZHloU05KUHRVQXo5R0pNUVp5T2hodTdsQUo5R2tBOGVuMApxSUJsMkVYL2FZSW16YU5rMzhxc0IyT1hVbTZEc1doMnVSR1RQQ0xlMzVIVEdkUjRjYTNuN2dtQ28vWWZMMW93CjM5dmtMVXJXSXY0Skl3bWkzcFRSMlVlOFdGZUpuaDdiaDhMWEVtdWEyOEVyQVgvdmQwZ3FOb3pLWC9aZ3hueVoKRFBtTmk1RTR4ZWp6eldvVUdIdkZreWt3TlJCWG0zZVVHQWNORVhlbkVSSWk2MmpwVi8rNFVkWldYOG9KWmtHaApCK2FNRGFUSE0xMDJlWk0zU3p4OElzeXZCenBBZVkzUkxyanpZOG51aDc4NUpTN3pLMU5WOVZQT213c2lJOXpKCmo2dHFSdjJmUWlibWFnPT0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
@@ -37,6 +39,10 @@ kind: ConfigMap
 metadata:
   name: telepresence-agents
   namespace: "{{ .Values.AmbassadorNamespace }}"
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 ---
 # Source: telepresence/templates/intercept-env-configmap.yaml
 apiVersion: v1
@@ -44,6 +50,10 @@ kind: ConfigMap
 metadata:
   name: telepresence-intercept-env
   namespace: "{{ .Values.AmbassadorNamespace }}"
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 data:
   excluded: |
 ---
@@ -53,6 +63,10 @@ kind: ConfigMap
 metadata:
   name: traffic-manager
   namespace: "{{ .Values.AmbassadorNamespace }}"
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 data:
   client.yaml: |
     connectionTTL: 24h
@@ -80,8 +94,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 ---
 # Source: telepresence/templates/trafficManagerRbac/cluster-scope.yaml
 apiVersion: rbac.authorization.k8s.io/v1
@@ -93,8 +108,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - ""
@@ -173,8 +189,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -195,8 +212,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
   - apiGroups:
       - ""
@@ -218,8 +236,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - ""
@@ -239,8 +258,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - ""
@@ -263,8 +283,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -285,8 +306,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -307,8 +329,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -329,8 +352,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   type: ClusterIP
   clusterIP: None
@@ -354,8 +378,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   type: ClusterIP
   ports:
@@ -377,8 +402,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   replicas: 1
   selector:
@@ -497,8 +523,9 @@ metadata:
     telepresence: manager
     helm.sh/chart: telepresence-{{ .Values.TelepresenceVersion }}
     app.kubernetes.io/version: "{{ .Values.TelepresenceVersion }}"
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/created-by: Helm
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 webhooks:
 - admissionReviewVersions:
   - v1

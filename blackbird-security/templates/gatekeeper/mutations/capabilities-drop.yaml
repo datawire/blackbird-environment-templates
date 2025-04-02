@@ -1,9 +1,12 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
   name: drop-capabilities-deployment
   namespace: gatekeeper-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -23,14 +26,16 @@ spec:
   parameters:
     assign:
       value: ["ALL"]
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
   name: drop-capabilities-deployment-pod
   namespace: gatekeeper-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -50,4 +55,3 @@ spec:
   parameters:
     assign:
       value: ["ALL"]
-{{- end }}

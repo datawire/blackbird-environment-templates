@@ -1,4 +1,3 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: constraints.gatekeeper.sh/v1beta1
 kind: K8sPSPCapabilities
 metadata:
@@ -6,6 +5,10 @@ metadata:
   namespace: gatekeeper-system
   annotations:
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   enforcementAction: deny
   match:
@@ -25,4 +28,3 @@ spec:
     allowedCapabilities: []
     requiredDropCapabilities:
       - "ALL"
-{{- end }}

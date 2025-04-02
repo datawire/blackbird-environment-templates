@@ -1,9 +1,12 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
   name: defaultallowprivileged-deployment
   namespace: gatekeeper-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -23,14 +26,16 @@ spec:
   parameters:
     assign:
       value: false
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
   name: defaultallowprivileged
   namespace: gatekeeper-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -50,14 +55,16 @@ spec:
   parameters:
     assign:
       value: false
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
   name: defaultallowprivileged-init
   namespace: gatekeeper-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -77,14 +84,16 @@ spec:
   parameters:
     assign:
       value: false
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
   name: defaultallowprivileged-ephemeral
   namespace: gatekeeper-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -104,4 +113,3 @@ spec:
   parameters:
     assign:
       value: false
-{{- end }}

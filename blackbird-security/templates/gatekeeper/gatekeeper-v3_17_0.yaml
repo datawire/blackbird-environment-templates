@@ -1,4 +1,3 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -14,15 +13,19 @@ metadata:
     pod-security.kubernetes.io/enforce-version: v1.24
     pod-security.kubernetes.io/warn: restricted
     pod-security.kubernetes.io/warn-version: latest
-  name: gatekeeper-system
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
 {{- end }}
+  name: gatekeeper-system
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: ResourceQuota
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-critical-pods
   namespace: gatekeeper-system
 spec:
@@ -34,9 +37,7 @@ spec:
         scopeName: PriorityClass
         values:
           - system-cluster-critical
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -45,6 +46,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: assign.mutations.gatekeeper.sh
 spec:
   group: mutations.gatekeeper.sh
@@ -1119,15 +1123,16 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
     argocd.argoproj.io/sync-wave: "-1"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   labels:
     gatekeeper.sh/system: "yes"
   name: assignimage.mutations.gatekeeper.sh
@@ -1466,9 +1471,7 @@ spec:
       storage: true
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -1477,6 +1480,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: assignmetadata.mutations.gatekeeper.sh
 spec:
   group: mutations.gatekeeper.sh
@@ -2398,9 +2404,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2409,6 +2413,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: configs.config.gatekeeper.sh
 spec:
   group: config.gatekeeper.sh
@@ -2519,9 +2526,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2530,6 +2535,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: constraintpodstatuses.status.gatekeeper.sh
 spec:
   group: status.gatekeeper.sh
@@ -2602,9 +2610,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2613,6 +2619,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: constrainttemplatepodstatuses.status.gatekeeper.sh
 spec:
   group: status.gatekeeper.sh
@@ -2684,9 +2693,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2695,6 +2702,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: constrainttemplates.templates.gatekeeper.sh
 spec:
   group: templates.gatekeeper.sh
@@ -3084,9 +3094,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -3095,6 +3103,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: expansiontemplate.expansion.gatekeeper.sh
 spec:
   group: expansion.gatekeeper.sh
@@ -3340,9 +3351,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -3351,6 +3360,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: expansiontemplatepodstatuses.status.gatekeeper.sh
 spec:
   group: status.gatekeeper.sh
@@ -3418,9 +3430,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -3429,6 +3439,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: modifyset.mutations.gatekeeper.sh
 spec:
   group: mutations.gatekeeper.sh
@@ -4416,9 +4429,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -4427,6 +4438,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: mutatorpodstatuses.status.gatekeeper.sh
 spec:
   group: status.gatekeeper.sh
@@ -4499,9 +4513,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -4510,6 +4522,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: providers.externaldata.gatekeeper.sh
 spec:
   group: externaldata.gatekeeper.sh
@@ -4603,9 +4618,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -4614,6 +4627,9 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: syncsets.syncset.gatekeeper.sh
 spec:
   group: syncset.gatekeeper.sh
@@ -4668,24 +4684,26 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-admin
   namespace: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-manager-role
   namespace: gatekeeper-system
 rules:
@@ -4708,9 +4726,7 @@ rules:
       - patch
       - update
       - watch
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -4901,14 +4917,15 @@ rules:
       - patch
       - update
       - watch
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-manager-rolebinding
   namespace: gatekeeper-system
 roleRef:
@@ -4919,14 +4936,15 @@ subjects:
   - kind: ServiceAccount
     name: gatekeeper-admin
     namespace: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-manager-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -4936,24 +4954,26 @@ subjects:
   - kind: ServiceAccount
     name: gatekeeper-admin
     namespace: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: Secret
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-webhook-server-cert
   namespace: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: Service
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-webhook-service
   namespace: gatekeeper-system
 spec:
@@ -4965,9 +4985,7 @@ spec:
     control-plane: controller-manager
     gatekeeper.sh/operation: webhook
     gatekeeper.sh/system: "yes"
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -4975,6 +4993,9 @@ metadata:
     control-plane: audit-controller
     gatekeeper.sh/operation: audit
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-audit
   namespace: gatekeeper-system
 spec:
@@ -5074,9 +5095,7 @@ spec:
             secretName: gatekeeper-webhook-server-cert
         - emptyDir: {}
           name: tmp-volume
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5084,6 +5103,9 @@ metadata:
     control-plane: controller-manager
     gatekeeper.sh/operation: webhook
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-controller-manager
   namespace: gatekeeper-system
 spec:
@@ -5194,14 +5216,15 @@ spec:
           secret:
             defaultMode: 420
             secretName: gatekeeper-webhook-server-cert
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-controller-manager
   namespace: gatekeeper-system
 spec:
@@ -5211,14 +5234,15 @@ spec:
       control-plane: controller-manager
       gatekeeper.sh/operation: webhook
       gatekeeper.sh/system: "yes"
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-mutating-webhook-configuration
 webhooks:
   - admissionReviewVersions:
@@ -5252,14 +5276,15 @@ webhooks:
           - '*'
     sideEffects: None
     timeoutSeconds: 1
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gatekeeper-validating-webhook-configuration
 webhooks:
   - admissionReviewVersions:
@@ -5337,4 +5362,3 @@ webhooks:
           - namespaces
     sideEffects: None
     timeoutSeconds: 3
-{{- end }}

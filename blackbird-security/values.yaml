@@ -1,0 +1,3 @@
+# Blackbird-specific labels
+Labels:
+  app.kubernetes.io/managed-by: blackbird

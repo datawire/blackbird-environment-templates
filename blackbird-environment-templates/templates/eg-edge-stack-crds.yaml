@@ -7,6 +7,10 @@ apiVersion: v1
 kind: Namespace
 metadata:
   name: gateway-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 ---
 # Source: eg-edge-stack-crds/templates/gwapi/gatewayapi-crds.yaml
 #
@@ -18,6 +22,9 @@ metadata:
   name: gateway-api-admission
   labels:
     name: gateway-api-webhook
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   namespace: gateway-system
 ---
 # Source: eg-edge-stack-crds/templates/envoy-gateway/config.gateway.envoyproxy.io_envoyproxies.yaml
@@ -29,6 +36,10 @@ metadata:
     controller-gen.kubebuilder.io/version: v0.10.0
   creationTimestamp: null
   name: envoyproxies.config.gateway.envoyproxy.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: config.gateway.envoyproxy.io
   names:
@@ -4106,6 +4117,10 @@ metadata:
     controller-gen.kubebuilder.io/version: v0.10.0
   creationTimestamp: null
   name: authenticationfilters.gateway.envoyproxy.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.envoyproxy.io
   names:
@@ -4240,6 +4255,10 @@ metadata:
     controller-gen.kubebuilder.io/version: v0.10.0
   creationTimestamp: null
   name: envoypatchpolicies.gateway.envoyproxy.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.envoyproxy.io
   names:
@@ -4474,6 +4493,10 @@ metadata:
     controller-gen.kubebuilder.io/version: v0.10.0
   creationTimestamp: null
   name: ratelimitfilters.gateway.envoyproxy.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.envoyproxy.io
   names:
@@ -4659,6 +4682,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
     controller-gen.kubebuilder.io/version: v0.13.0
   name: filterpolicies.gateway.getambassador.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.getambassador.io
   names:
@@ -5179,6 +5206,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
     controller-gen.kubebuilder.io/version: v0.13.0
   name: filters.gateway.getambassador.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.getambassador.io
   names:
@@ -6181,6 +6212,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
     controller-gen.kubebuilder.io/version: v0.13.0
   name: webapplicationfirewallpolicies.gateway.getambassador.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.getambassador.io
   names:
@@ -6553,6 +6588,10 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
     controller-gen.kubebuilder.io/version: v0.13.0
   name: webapplicationfirewalls.gateway.getambassador.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.getambassador.io
   names:
@@ -6799,6 +6838,10 @@ metadata:
     gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: gatewayclasses.gateway.networking.k8s.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.networking.k8s.io
   names:
@@ -7236,6 +7279,10 @@ metadata:
     gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: gateways.gateway.networking.k8s.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.networking.k8s.io
   names:
@@ -8679,6 +8726,10 @@ metadata:
     gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: grpcroutes.gateway.networking.k8s.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.networking.k8s.io
   names:
@@ -10184,6 +10235,10 @@ metadata:
     gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: httproutes.gateway.networking.k8s.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.networking.k8s.io
   names:
@@ -14063,6 +14118,10 @@ metadata:
     gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: referencegrants.gateway.networking.k8s.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.networking.k8s.io
   names:
@@ -14347,6 +14406,10 @@ metadata:
     gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: tcproutes.gateway.networking.k8s.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.networking.k8s.io
   names:
@@ -14879,6 +14942,10 @@ metadata:
     gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: tlsroutes.gateway.networking.k8s.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.networking.k8s.io
   names:
@@ -15460,6 +15527,10 @@ metadata:
     gateway.networking.k8s.io/channel: experimental
   creationTimestamp: null
   name: udproutes.gateway.networking.k8s.io
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   group: gateway.networking.k8s.io
   names:
@@ -15985,6 +16056,9 @@ metadata:
   name: gateway-api-admission
   labels:
     name: gateway-api
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - admissionregistration.k8s.io
@@ -16001,6 +16075,9 @@ metadata:
   name: gateway-api-admission
   labels:
     name: gateway-api-webhook
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -16017,6 +16094,9 @@ metadata:
   name: gateway-api-admission
   labels:
     name: gateway-api-webhook
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   namespace: gateway-system
 rules:
 - apiGroups:
@@ -16034,6 +16114,9 @@ metadata:
   name: gateway-api-admission
   labels:
     name: gateway-api-webhook
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   namespace: gateway-system
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -16050,6 +16133,9 @@ kind: Service
 metadata:
   labels:
     name: gateway-api-webhook-server
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: gateway-api-admission-server
   namespace: gateway-system
 spec:
@@ -16069,6 +16155,9 @@ metadata:
   namespace: gateway-system
   labels:
     name: gateway-api-admission-server
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   replicas: 1
   selector:
@@ -16118,6 +16207,9 @@ metadata:
   name: gateway-api-admission
   labels:
     name: gateway-api-webhook
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   namespace: gateway-system
 spec:
   template:
@@ -16153,6 +16245,9 @@ metadata:
   name: gateway-api-admission-patch
   labels:
     name: gateway-api-webhook
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   namespace: gateway-system
 spec:
   template:
@@ -16192,6 +16287,10 @@ apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
   name: gateway-api-admission
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 webhooks:
 - name: validate.gateway.networking.k8s.io
   matchPolicy: Equivalent

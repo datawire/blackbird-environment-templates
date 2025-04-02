@@ -9,6 +9,9 @@ metadata:
     control-plane: edge-stack
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 ---
 # Source: eg-edge-stack/templates/envoy-gateway/certgen-rbac.yaml
 apiVersion: v1
@@ -20,6 +23,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 ---
 # Source: eg-edge-stack/templates/envoy-gateway/envoy-gateway-deployment.yaml
 apiVersion: v1
@@ -31,6 +37,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 ---
 # Source: eg-edge-stack/templates/envoy-gateway/envoy-gateway-config.yaml
 apiVersion: v1
@@ -42,6 +51,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 data:
   envoy-gateway.yaml: |
     apiVersion: config.gateway.envoyproxy.io/v1alpha1
@@ -72,6 +84,9 @@ metadata:
     control-plane: edge-stack
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name:  eg-edge-stack
 rules:
 - apiGroups:
@@ -202,6 +217,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     rbac.gateway.getambassador.io/role-group: eg-edge-stack
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: eg-edge-stack-watch
 rules:
 - apiGroups:
@@ -285,6 +303,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     rbac.gateway.getambassador.io/role-group: eg-edge-stack
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: eg-edge-stack-crd
 rules:
 - apiGroups:
@@ -307,6 +328,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - nonResourceURLs:
   - /metrics
@@ -322,6 +346,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - authentication.k8s.io
@@ -341,6 +368,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: eg-edge-stack-eg-envoy-gateway-role
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - ""
@@ -435,6 +466,9 @@ metadata:
     control-plane: edge-stack
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   name: eg-edge-stack
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -453,6 +487,10 @@ apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: eg-edge-stack-eg-envoy-gateway-rolebinding
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -471,6 +509,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
@@ -490,6 +531,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - ""
@@ -510,6 +554,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - ""
@@ -541,6 +588,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - ""
@@ -584,6 +634,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 rules:
 - apiGroups:
   - ""
@@ -612,6 +665,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -631,6 +687,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -650,6 +709,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -669,6 +731,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
@@ -689,6 +754,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     app.kubernetes.io/name: eg-edge-stack-auth-service.ambassador
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   ports:
     - name: ext-authz
@@ -716,6 +784,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     app.kubernetes.io/name: eg-edge-stack.ambassador
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   ports:
     - name: hooks-server
@@ -747,6 +818,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     app.kubernetes.io/name: eg-edge-stack-redis
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
   annotations:
     a8r.io/owner: "Ambassador Labs"
     a8r.io/description: "The Ambassador edge-stack Redis store for auth and rate limiting, among other things."
@@ -772,6 +846,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     app.kubernetes.io/name: eg-edge-stack-waf-service.ambassador
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   ports:
     - name: firewall
@@ -799,6 +876,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   selector:
     control-plane: envoy-gateway
@@ -821,6 +901,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   selector:
     control-plane: envoy-gateway
@@ -845,6 +928,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     app.kubernetes.io/name: eg-edge-stack-auth-service.ambassador
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   replicas: 2
   selector:
@@ -929,6 +1015,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     app.kubernetes.io/name: eg-edge-stack.ambassador
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   replicas: 2
   selector:
@@ -1018,6 +1107,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     app.kubernetes.io/name: eg-edge-stack-redis.ambassador
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   replicas: 1
   selector:
@@ -1051,6 +1143,9 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack
     app.kubernetes.io/version: "{{ .Values.AES4Version }}"
     app.kubernetes.io/name: eg-edge-stack-waf-service.ambassador
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   replicas: 2
   selector:
@@ -1135,6 +1230,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }} 
 spec:
   replicas: 2
   selector:
@@ -1243,6 +1341,9 @@ metadata:
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/version: "v0.5.0"
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   backoffLimit: 1
   completions: 1

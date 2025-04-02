@@ -1,9 +1,12 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
-  name: automountserviceaccounttoken-deployment
+  name: seccompprofile-deployment
   namespace: gatekeeper-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -19,18 +22,20 @@ spec:
     - groups: ["apps"]
       kinds: ["Deployment"]
       versions: ["v1"]
-  location: "spec.template.spec.automountServiceAccountToken"
+  location: "spec.template.spec.securityContext.seccompProfile.type"
   parameters:
     assign:
-      value: false
-{{- end }}
+      value: RuntimeDefault
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
-  name: automountserviceaccounttoken-pod
+  name: seccompprofile-pod
   namespace: gatekeeper-system
+  labels:
+{{- range $key, $value := .Values.Labels }}
+    {{ $key }}: {{ $value | quote }}
+{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -46,8 +51,7 @@ spec:
     - groups: [""]
       kinds: ["Pod"]
       versions: ["v1"]
-  location: "spec.automountServiceAccountToken"
+  location: "spec.securityContext.seccompProfile.type"
   parameters:
     assign:
-      value: false
-{{- end }}
+      value: RuntimeDefault
