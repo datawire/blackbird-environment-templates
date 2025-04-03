@@ -1,4 +1,3 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: Namespace
 metadata:
@@ -15,9 +14,7 @@ metadata:
     pod-security.kubernetes.io/warn: restricted
     pod-security.kubernetes.io/warn-version: latest
   name: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: ResourceQuota
 metadata:
@@ -34,9 +31,7 @@ spec:
         scopeName: PriorityClass
         values:
           - system-cluster-critical
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -1119,9 +1114,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -1466,9 +1459,7 @@ spec:
       storage: true
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2398,9 +2389,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2519,9 +2508,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2602,9 +2589,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -2684,9 +2669,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -3084,9 +3067,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -3340,9 +3321,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -3418,9 +3397,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -4416,9 +4393,7 @@ spec:
       storage: false
       subresources:
         status: {}
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -4499,9 +4474,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -4603,9 +4576,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apiextensions.k8s.io/v1
 kind: CustomResourceDefinition
 metadata:
@@ -4668,9 +4639,7 @@ spec:
           type: object
       served: true
       storage: true
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: ServiceAccount
 metadata:
@@ -4678,9 +4647,7 @@ metadata:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-admin
   namespace: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
@@ -4708,9 +4675,7 @@ rules:
       - patch
       - update
       - watch
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
@@ -4901,9 +4866,7 @@ rules:
       - patch
       - update
       - watch
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
@@ -4919,9 +4882,7 @@ subjects:
   - kind: ServiceAccount
     name: gatekeeper-admin
     namespace: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
@@ -4936,9 +4897,7 @@ subjects:
   - kind: ServiceAccount
     name: gatekeeper-admin
     namespace: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: Secret
 metadata:
@@ -4946,9 +4905,7 @@ metadata:
     gatekeeper.sh/system: "yes"
   name: gatekeeper-webhook-server-cert
   namespace: gatekeeper-system
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: v1
 kind: Service
 metadata:
@@ -4965,9 +4922,7 @@ spec:
     control-plane: controller-manager
     gatekeeper.sh/operation: webhook
     gatekeeper.sh/system: "yes"
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5074,9 +5029,7 @@ spec:
             secretName: gatekeeper-webhook-server-cert
         - emptyDir: {}
           name: tmp-volume
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -5194,9 +5147,7 @@ spec:
           secret:
             defaultMode: 420
             secretName: gatekeeper-webhook-server-cert
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: policy/v1
 kind: PodDisruptionBudget
 metadata:
@@ -5211,9 +5162,7 @@ spec:
       control-plane: controller-manager
       gatekeeper.sh/operation: webhook
       gatekeeper.sh/system: "yes"
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: admissionregistration.k8s.io/v1
 kind: MutatingWebhookConfiguration
 metadata:
@@ -5252,9 +5201,7 @@ webhooks:
           - '*'
     sideEffects: None
     timeoutSeconds: 1
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: admissionregistration.k8s.io/v1
 kind: ValidatingWebhookConfiguration
 metadata:
@@ -5337,4 +5284,3 @@ webhooks:
           - namespaces
     sideEffects: None
     timeoutSeconds: 3
-{{- end }}

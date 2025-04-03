@@ -736,7 +736,6 @@ spec:
 # Note, deploying redis via the chart is a temporary solution
 # the long-term goal is to have a hook in the EG infra manager dynamically create
 # instances of redis and the auth service
-
 apiVersion: v1
 kind: Service
 metadata:

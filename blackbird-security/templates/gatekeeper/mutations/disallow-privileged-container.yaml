@@ -1,4 +1,3 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
@@ -23,9 +22,7 @@ spec:
   parameters:
     assign:
       value: false
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
@@ -50,9 +47,7 @@ spec:
   parameters:
     assign:
       value: false
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
@@ -77,9 +72,7 @@ spec:
   parameters:
     assign:
       value: false
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
@@ -104,4 +97,3 @@ spec:
   parameters:
     assign:
       value: false
-{{- end }}

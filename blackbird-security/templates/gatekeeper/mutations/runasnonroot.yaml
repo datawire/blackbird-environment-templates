@@ -1,8 +1,7 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
-  name: automountserviceaccounttoken-deployment
+  name: runasnonroot-deployment
   namespace: gatekeeper-system
 spec:
   match:
@@ -19,17 +18,15 @@ spec:
     - groups: ["apps"]
       kinds: ["Deployment"]
       versions: ["v1"]
-  location: "spec.template.spec.automountServiceAccountToken"
+  location: "spec.template.spec.securityContext.runAsNonRoot"
   parameters:
     assign:
-      value: false
-{{- end }}
+      value: true
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
-  name: automountserviceaccounttoken-pod
+  name: runasnonroot-pod
   namespace: gatekeeper-system
 spec:
   match:
@@ -46,8 +43,7 @@ spec:
     - groups: [""]
       kinds: ["Pod"]
       versions: ["v1"]
-  location: "spec.automountServiceAccountToken"
+  location: "spec.securityContext.runAsNonRoot"
   parameters:
     assign:
-      value: false
-{{- end }}
+      value: true

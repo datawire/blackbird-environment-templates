@@ -1,4 +1,3 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -44,9 +43,7 @@ spec:
           msg := sprintf("ephemeralContainer <%v> has an invalid image repo <%v>, allowed repos are %v", [container.name, container.image, input.parameters.repos])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -89,9 +86,7 @@ spec:
             "update" == verbs[_]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -117,9 +112,7 @@ spec:
           msg := "User is not allowed to create service of type LoadBalancer"
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -145,9 +138,7 @@ spec:
           msg := "User is not allowed to create service of type NodePort"
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -183,9 +174,7 @@ spec:
           msg := sprintf("Hostname '%v' is not allowed since it counts as a wildcard, which can be used to intercept traffic from other applications.", [hostname])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -412,9 +401,7 @@ spec:
           msg := sprintf("container <%v> ephemeral-storage limit <%v> is higher than the maximum allowed of <%v>", [container.name, storage_orig, max_storage_orig])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -673,9 +660,7 @@ spec:
           msg := sprintf("container <%v> memory limit <%v> is higher than the maximum allowed of <%v>", [container.name, mem_orig, max_mem_orig])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -983,9 +968,7 @@ spec:
           msg := sprintf("container <%v> memory limit <%v> is higher than the maximum allowed ratio of <%v>", [container.name, mem_limits_orig, mem_ratio])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1244,9 +1227,7 @@ spec:
           msg := sprintf("container <%v> memory request <%v> is higher than the maximum allowed of <%v>", [container.name, mem_orig, max_mem_orig])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1312,9 +1293,7 @@ spec:
           val := sprintf("%v is not allowed as a subject name in %v %v", [name, input.review.object.kind, input.review.object.metadata.name])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1364,9 +1343,7 @@ spec:
           msg := sprintf("ephemeralContainer <%v> has an invalid image repo <%v>, disallowed repos are %v", [container.name, container.image, input.parameters.repos])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1453,9 +1430,7 @@ spec:
             c := input.review.object.spec.ephemeralContainers[_]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1540,9 +1515,7 @@ spec:
             object[field]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1581,9 +1554,7 @@ spec:
           msg := sprintf("service has forbidden external IPs: %v", [forbiddenIPs])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1664,9 +1635,7 @@ spec:
       >= max_provided\n}\n\ninput_replica_spread(hpa) {\n    input.parameters.minimumReplicaSpread\n
       \   (hpa.spec.maxReplicas - hpa.spec.minReplicas) >= input.parameters.minimumReplicaSpread\n}\n"
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1731,9 +1700,7 @@ spec:
           object.get(parameters, "tlsOptional", false) == true
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1811,9 +1778,7 @@ spec:
           msg := sprintf("ephemeralContainer <%v> uses an image without a digest <%v>", [container.name, container.image])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -1871,9 +1836,7 @@ spec:
       voluntarily\n  max_unavailable := object.get(pdb.spec, \"maxUnavailable\", 1)\n
       \ max_unavailable > 0\n}\n"
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -2160,9 +2123,7 @@ spec:
             c := input.review.object.spec.ephemeralContainers[_]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -2298,9 +2259,7 @@ spec:
                   object[field]
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -2511,9 +2470,7 @@ spec:
                   out := "runtime/default"
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -2578,9 +2535,7 @@ spec:
             _ = x[k]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -2800,9 +2755,7 @@ spec:
                 not obj[param] == false
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -2869,9 +2822,7 @@ spec:
             object[field]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -2970,9 +2921,7 @@ spec:
             startswith(sysctl, trim_suffix(allowed, "*"))
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -3074,9 +3023,7 @@ spec:
             object[field]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -3259,9 +3206,7 @@ spec:
                   c := input.review.object.spec.ephemeralContainers[_]
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -3311,9 +3256,7 @@ spec:
             o.spec.hostIPC
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -3479,9 +3422,7 @@ spec:
                   not is_exempt(c)
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -3606,9 +3547,7 @@ spec:
                   c := input.review.object.spec.ephemeralContainers[_]
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -3787,9 +3726,7 @@ spec:
                   lower(str) == "unmasked"
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -3922,9 +3859,7 @@ spec:
                   object[field]
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4187,9 +4122,7 @@ spec:
             container := input.review.object.spec.ephemeralContainers[_]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4327,9 +4260,7 @@ spec:
             object[field]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4390,9 +4321,7 @@ spec:
             field == input.parameters.volumes[_]
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4449,9 +4378,7 @@ spec:
             range.max_replicas >= value
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4507,9 +4434,7 @@ spec:
           msg := sprintf("Annotation <%v: %v> does not satisfy allowed regex: %v", [key, value, expected.allowedRegex])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4588,9 +4513,7 @@ spec:
                 msg := get_message(input.parameters, def_msg)
               }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4665,9 +4588,7 @@ spec:
             msg := sprintf("Container <%v> in your <%v> <%v> has no <%v>", [container.name, review.kind.kind, review.object.metadata.name, probe])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4767,9 +4688,7 @@ spec:
           msg := sprintf("container <%v> does not have <%v> requests defined", [container.name, missing])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4924,9 +4843,7 @@ spec:
           []
         )
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -4977,9 +4894,7 @@ spec:
           msg := sprintf("ingress host conflicts with an existing ingress <%v>", [host])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -5045,9 +4960,7 @@ spec:
           msg := sprintf("same selector as service <%v> in namespace <%v>", [name, namespace])
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -5155,9 +5068,7 @@ spec:
           msg := "missing serviceAccountName field in oldObject under review"
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
@@ -5226,4 +5137,3 @@ spec:
           api == "None"
         }
       target: admission.k8s.gatekeeper.sh
-{{- end }}

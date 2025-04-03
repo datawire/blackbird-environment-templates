@@ -1,4 +1,3 @@
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
@@ -23,9 +22,7 @@ spec:
   parameters:
     assign:
       value: ["ALL"]
-{{- end }}
 ---
-{{- if .Values.enableClusterPolicies }}
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
@@ -50,4 +47,3 @@ spec:
   parameters:
     assign:
       value: ["ALL"]
-{{- end }}
