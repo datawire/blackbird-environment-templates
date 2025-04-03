@@ -1,10 +1,6 @@
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Requires container images to begin with a string from the specified
       list.
@@ -51,10 +47,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Many Kubernetes installations by default have a system:aggregate-to-edit ClusterRole which does not properly restrict access to editing Endpoints. This ConstraintTemplate forbids the system:aggregate-to-edit ClusterRole from granting permission to create/patch/update Endpoints.
@@ -98,10 +90,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Disallows all Services with type LoadBalancer.
@@ -128,10 +116,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Disallows all Services with type NodePort.
@@ -158,10 +142,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Users should not be able to create Ingresses with a blank or wildcard
       (*) hostname since that would enable them to intercept traffic for other services
@@ -198,10 +178,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires containers to have an ephemeral storage limit set and constrains the limit to be within the specified maximum values.
@@ -429,10 +405,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires containers to have memory and CPU limits set and constrains limits to be within the specified maximum values.
@@ -692,10 +664,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Sets a maximum ratio for container resource limits to requests.
@@ -1004,10 +972,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires containers to have memory and CPU requests set and constrains requests to be within the specified maximum values.
@@ -1267,10 +1231,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Disallows associating ClusterRole and Role resources to the system:anonymous
       user and system:unauthenticated group.
@@ -1337,10 +1297,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Disallowed container repositories that begin with a string from the
       specified list.
@@ -1391,10 +1347,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires container images to have an image tag different from the ones in the specified list.
@@ -1482,10 +1434,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Requires that objects have the fields `spec.tty` and `spec.stdin`
       set to false or unset.
@@ -1571,10 +1519,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Restricts Service externalIPs to an allowed list of IP addresses.
@@ -1614,10 +1558,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Disallow the following scenarios when deploying `HorizontalPodAutoscalers`
       1. Deployment of HorizontalPodAutoscalers with `.spec.minReplicas` or `.spec.maxReplicas`
@@ -1699,10 +1639,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires Ingress resources to be HTTPS only.  Ingress resources must include the `kubernetes.io/ingress.allow-http` annotation, set to `false`. By default a valid TLS {} configuration is required, this can be made optional by setting the `tlsOptional` parameter to `true`.
@@ -1768,10 +1704,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires container images to contain a digest.
@@ -1850,10 +1782,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Disallow the following scenarios when deploying PodDisruptionBudgets or resources that implement the replica subresource (e.g. Deployment, ReplicationController, ReplicaSet, StatefulSet): 1. Deployment of PodDisruptionBudgets with .spec.maxUnavailable == 0 2. Deployment of PodDisruptionBudgets with .spec.minAvailable == .spec.replicas of the resource with replica subresource This will prevent PodDisruptionBudgets from blocking voluntary disruptions such as node draining.
@@ -1912,10 +1840,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls the user and group IDs of the container and some volumes.
       Corresponds to the `runAsUser`, `runAsGroup`, `supplementalGroups`, and `fsGroup`
@@ -2203,10 +2127,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls restricting escalation to root privileges. Corresponds to
       the `allowPrivilegeEscalation` field in a PodSecurityPolicy. For more information,
@@ -2343,10 +2263,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Configures an allow-list of AppArmor profiles for use by containers.
       This corresponds to specific annotations applied to a PodSecurityPolicy. For
@@ -2558,10 +2474,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls the ability of any Pod to enable automountServiceAccountToken.
     metadata.gatekeeper.sh/title: Automount Service Account Token for Pod
@@ -2627,10 +2539,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls Linux capabilities on containers. Corresponds to the `allowedCapabilities`
       and `requiredDropCapabilities` fields in a PodSecurityPolicy. For more information,
@@ -2851,10 +2759,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls the allowlist of FlexVolume drivers. Corresponds to the
       `allowedFlexVolumes` field in PodSecurityPolicy. For more information, see https://kubernetes.io/docs/concepts/policy/pod-security-policy/#flexvolume-drivers
@@ -2922,10 +2826,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls the `sysctl` profile used by containers. Corresponds to
       the `allowedUnsafeSysctls` and `forbiddenSysctls` fields in a PodSecurityPolicy.
@@ -3025,10 +2925,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls allocating an FSGroup that owns the Pod's volumes. Corresponds
       to the `fsGroup` field in a PodSecurityPolicy. For more information, see https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems
@@ -3131,10 +3027,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls usage of the host filesystem. Corresponds to the `allowedHostPaths`
       field in a PodSecurityPolicy. For more information, see https://kubernetes.io/docs/concepts/policy/pod-security-policy/#volumes-and-file-systems
@@ -3318,10 +3210,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Disallows sharing of host PID and IPC namespaces by pod containers.
       Corresponds to the `hostPID` and `hostIPC` fields in a PodSecurityPolicy. For
@@ -3372,10 +3260,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls usage of host network namespace by pod containers. HostNetwork
       verification happens without exception for exemptImages. Specific ports must
@@ -3542,10 +3426,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls the ability of any container to enable privileged mode.
       Corresponds to the `privileged` field in a PodSecurityPolicy. For more information,
@@ -3671,10 +3551,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls the allowed `procMount` types for the container. Corresponds
       to the `allowedProcMountTypes` field in a PodSecurityPolicy. For more information,
@@ -3854,10 +3730,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Requires the use of a read-only root file system by pod containers.
       Corresponds to the `readOnlyRootFilesystem` field in a PodSecurityPolicy. For
@@ -3991,10 +3863,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Controls the seccomp profile used by containers. Corresponds to the
       `seccomp.security.alpha.kubernetes.io/allowedProfileNames` annotation on a PodSecurityPolicy.
@@ -4258,10 +4126,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Defines an allow-list of seLinuxOptions configurations for pod containers.
       Corresponds to a PodSecurityPolicy requiring SELinux configs. For more information,
@@ -4400,10 +4264,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Restricts mountable volume types to those specified by the user.
       Corresponds to the `volumes` field in a PodSecurityPolicy. For more information,
@@ -4465,10 +4325,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Requires that objects with the field `spec.replicas` (Deployments,
       ReplicaSets, etc.) specify a number of replicas within defined ranges.
@@ -4526,10 +4382,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Requires resources to contain specified annotations, with values
       matching provided regular expressions.
@@ -4586,10 +4438,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Requires resources to contain specified labels, with values matching
       provided regular expressions.
@@ -4669,10 +4517,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Requires Pods to have readiness and/or liveness probes.
     metadata.gatekeeper.sh/title: Required Probes
@@ -4748,10 +4592,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires containers to have defined resources set.
@@ -4852,10 +4692,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Requires storage classes to be specified when used. Only Gatekeeper
       3.9+ and non-ephemeral containers are supported.
@@ -5011,10 +4847,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires all Ingress rule hosts to be unique.
@@ -5066,10 +4898,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: |-
       Requires Services to have unique selectors within a namespace. Selectors are considered the same if they have identical keys and values. Selectors may share a key/value pair so long as there is at least one distinct key/value pair between them.
@@ -5136,10 +4964,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Blocks updating the service account on resources that abstract over
       Pods. This policy is ignored in audit mode.
@@ -5248,10 +5072,6 @@ spec:
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
 metadata:
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   annotations:
     description: Verifies deprecated Kubernetes APIs to ensure all the API versions
       are up to date. This template does not apply to audit as audit looks at the

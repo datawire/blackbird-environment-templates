@@ -3,9 +3,6 @@ kind: GatewayClass
 metadata:
   labels:
     app.kubernetes.io/instance: eg-edge-stack
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: aes-gateway
   namespace: {{ .Values.AmbassadorNamespace }}
 spec:
@@ -21,9 +18,6 @@ kind: Gateway
 metadata:
   labels:
     app.kubernetes.io/instance: eg-edge-stack
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: aes-gateway
   namespace: {{ .Values.AmbassadorNamespace }}
 spec:

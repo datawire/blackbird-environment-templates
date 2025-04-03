@@ -13,9 +13,6 @@ metadata:
     pod-security.kubernetes.io/enforce-version: v1.24
     pod-security.kubernetes.io/warn: restricted
     pod-security.kubernetes.io/warn-version: latest
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-system
 ---
 apiVersion: v1
@@ -23,9 +20,6 @@ kind: ResourceQuota
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-critical-pods
   namespace: gatekeeper-system
 spec:
@@ -46,9 +40,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: assign.mutations.gatekeeper.sh
 spec:
   group: mutations.gatekeeper.sh
@@ -1130,9 +1121,6 @@ metadata:
   annotations:
     controller-gen.kubebuilder.io/version: v0.14.0
     argocd.argoproj.io/sync-wave: "-1"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   labels:
     gatekeeper.sh/system: "yes"
   name: assignimage.mutations.gatekeeper.sh
@@ -1480,9 +1468,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: assignmetadata.mutations.gatekeeper.sh
 spec:
   group: mutations.gatekeeper.sh
@@ -2413,9 +2398,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: configs.config.gatekeeper.sh
 spec:
   group: config.gatekeeper.sh
@@ -2535,9 +2517,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: constraintpodstatuses.status.gatekeeper.sh
 spec:
   group: status.gatekeeper.sh
@@ -2619,9 +2598,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: constrainttemplatepodstatuses.status.gatekeeper.sh
 spec:
   group: status.gatekeeper.sh
@@ -2702,9 +2678,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: constrainttemplates.templates.gatekeeper.sh
 spec:
   group: templates.gatekeeper.sh
@@ -3103,9 +3076,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: expansiontemplate.expansion.gatekeeper.sh
 spec:
   group: expansion.gatekeeper.sh
@@ -3360,9 +3330,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: expansiontemplatepodstatuses.status.gatekeeper.sh
 spec:
   group: status.gatekeeper.sh
@@ -3439,9 +3406,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: modifyset.mutations.gatekeeper.sh
 spec:
   group: mutations.gatekeeper.sh
@@ -4438,9 +4402,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: mutatorpodstatuses.status.gatekeeper.sh
 spec:
   group: status.gatekeeper.sh
@@ -4522,9 +4483,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: providers.externaldata.gatekeeper.sh
 spec:
   group: externaldata.gatekeeper.sh
@@ -4627,9 +4585,6 @@ metadata:
     argocd.argoproj.io/sync-wave: "-1"
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: syncsets.syncset.gatekeeper.sh
 spec:
   group: syncset.gatekeeper.sh
@@ -4690,9 +4645,6 @@ kind: ServiceAccount
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-admin
   namespace: gatekeeper-system
 ---
@@ -4701,9 +4653,6 @@ kind: Role
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-manager-role
   namespace: gatekeeper-system
 rules:
@@ -4923,9 +4872,6 @@ kind: RoleBinding
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-manager-rolebinding
   namespace: gatekeeper-system
 roleRef:
@@ -4942,9 +4888,6 @@ kind: ClusterRoleBinding
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-manager-rolebinding
 roleRef:
   apiGroup: rbac.authorization.k8s.io
@@ -4960,9 +4903,6 @@ kind: Secret
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-webhook-server-cert
   namespace: gatekeeper-system
 ---
@@ -4971,9 +4911,6 @@ kind: Service
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-webhook-service
   namespace: gatekeeper-system
 spec:
@@ -4993,9 +4930,6 @@ metadata:
     control-plane: audit-controller
     gatekeeper.sh/operation: audit
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-audit
   namespace: gatekeeper-system
 spec:
@@ -5103,9 +5037,6 @@ metadata:
     control-plane: controller-manager
     gatekeeper.sh/operation: webhook
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-controller-manager
   namespace: gatekeeper-system
 spec:
@@ -5222,9 +5153,6 @@ kind: PodDisruptionBudget
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-controller-manager
   namespace: gatekeeper-system
 spec:
@@ -5240,9 +5168,6 @@ kind: MutatingWebhookConfiguration
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-mutating-webhook-configuration
 webhooks:
   - admissionReviewVersions:
@@ -5282,9 +5207,6 @@ kind: ValidatingWebhookConfiguration
 metadata:
   labels:
     gatekeeper.sh/system: "yes"
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: gatekeeper-validating-webhook-configuration
 webhooks:
   - admissionReviewVersions:

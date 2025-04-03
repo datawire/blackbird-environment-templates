@@ -3,10 +3,6 @@ kind: Assign
 metadata:
   name: seccompprofile-deployment
   namespace: gatekeeper-system
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -32,10 +28,6 @@ kind: Assign
 metadata:
   name: seccompprofile-pod
   namespace: gatekeeper-system
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
 spec:
   match:
     scope: Namespaced

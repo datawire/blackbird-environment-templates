@@ -3,10 +3,6 @@ kind: Assign
 metadata:
   name: defaultallowprivilegeescalation-deployment
   namespace: gatekeeper-system
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -32,10 +28,6 @@ kind: Assign
 metadata:
   name: defaultallowprivilegeescalation
   namespace: gatekeeper-system
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -61,10 +53,6 @@ kind: Assign
 metadata:
   name: defaultallowprivilegeescalation-init
   namespace: gatekeeper-system
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
 spec:
   match:
     scope: Namespaced
@@ -84,17 +72,12 @@ spec:
   parameters:
     assign:
       value: false
-
 ---
 apiVersion: mutations.gatekeeper.sh/v1
 kind: Assign
 metadata:
   name: defaultallowprivilegeescalation-ephemeral
   namespace: gatekeeper-system
-  labels:
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
 spec:
   match:
     scope: Namespaced

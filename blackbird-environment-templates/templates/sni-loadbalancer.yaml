@@ -11,9 +11,6 @@ metadata:
     blackbird.getambassador.io/namespace: {{ .Values.AmbassadorNamespace }}
     gateway.envoyproxy.io/owning-gateway-name: aes-gateway
     gateway.envoyproxy.io/owning-gateway-namespace: {{ .Values.AmbassadorNamespace }}
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: default
   namespace: {{ .Values.AmbassadorNamespace }}
 spec:

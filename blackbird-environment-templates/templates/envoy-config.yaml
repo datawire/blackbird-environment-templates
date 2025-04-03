@@ -5,9 +5,6 @@ metadata:
     app.kubernetes.io/instance: eg-edge-stack-eg
     app.kubernetes.io/name: eg-edge-stack-eg
     app.kubernetes.io/version: v0.5.0
-{{- range $key, $value := .Values.Labels }}
-    {{ $key }}: {{ $value | quote }}
-{{- end }}
   name: edge-stack-proxy
   namespace: ambassador
 spec:
